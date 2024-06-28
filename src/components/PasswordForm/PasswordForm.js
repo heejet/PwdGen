@@ -1,6 +1,20 @@
 import { Button, Checkbox, Form, Input } from "antd";
 
 import "./PasswordForm.css";
+import { CONSTANTS } from "../../utils/constants";
+
+const passwordFormatOptions = [
+  {
+    label: "Add Special Character",
+    value: CONSTANTS.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
+  },
+  { label: "Add Numbers", value: CONSTANTS.PASSWORD_FORMATS.ADD_NUMBERS },
+];
+
+const initialPasswordFormatValues = [
+  CONSTANTS.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
+  CONSTANTS.PASSWORD_FORMATS.ADD_NUMBERS,
+];
 
 const onFinish = (values) => {
   console.log("Success:", values);
@@ -10,12 +24,16 @@ const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
+const onChange = (checkedValues) => {
+  console.log("checked = ", checkedValues);
+};
+
 const PasswordForm = () => {
   return (
     <Form
       name="basic"
       initialValues={{
-        remember: true,
+        passwordFormat: initialPasswordFormatValues,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
@@ -47,13 +65,13 @@ const PasswordForm = () => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
+      <Form.Item name="passwordFormat">
+        <Checkbox.Group options={passwordFormatOptions} onChange={onChange} />
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit">
-          Submit
+          Generate Password
         </Button>
       </Form.Item>
     </Form>
