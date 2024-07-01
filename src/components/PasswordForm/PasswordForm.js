@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, InputNumber } from "antd";
 
 import "./PasswordForm.css";
 import { CONSTANTS } from "../../utils/constants";
@@ -11,11 +11,16 @@ const passwordFormatOptions = [
   { label: "Add Numbers", value: CONSTANTS.PASSWORD_FORMATS.ADD_NUMBERS },
 ];
 
+
+/** Initial form values. */
 const initialPasswordFormatValues = [
   CONSTANTS.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
   CONSTANTS.PASSWORD_FORMATS.ADD_NUMBERS,
 ];
 
+const initialIterationValue = 1
+
+/** Form handlers. */
 const onFinish = (values) => {
   console.log("Success:", values);
 };
@@ -34,6 +39,7 @@ const PasswordForm = () => {
       name="basic"
       initialValues={{
         passwordFormat: initialPasswordFormatValues,
+        iteration: initialIterationValue
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
@@ -63,6 +69,21 @@ const PasswordForm = () => {
         ]}
       >
         <Input.Password />
+      </Form.Item>
+
+      <Form.Item
+        name="iteration"
+        label="Iteration"
+        rules={[
+          {
+            required: true,
+            type: "number",
+            min: 1,
+            max: 99,
+          },
+        ]}
+      >
+        <InputNumber />
       </Form.Item>
 
       <Form.Item name="passwordFormat">
