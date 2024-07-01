@@ -1,7 +1,10 @@
+import { useDispatch } from "react-redux";
 import { Button, Checkbox, Form, Input, InputNumber } from "antd";
 
-import "./PasswordForm.css";
 import { CONSTANTS } from "../../utils/constants";
+import { passwordFormActions } from "../../store/password-form-slice";
+
+import "./PasswordForm.css";
 
 const passwordFormatOptions = [
   {
@@ -23,20 +26,23 @@ const initialPasswordFormatValues = [
 const initialIterationValue =
   CONSTANTS.PASSWORD_FORM.INITIAL_VALUES.INITIAL_ITERATION_VALUE;
 
-/** Form handlers. */
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
-const onChange = (checkedValues) => {
-  console.log("checked = ", checkedValues);
-};
-
 const PasswordForm = () => {
+  const dispatch = useDispatch();
+
+  /** Form handlers. */
+  const onFinish = (values) => {
+    console.log("Success:", values);
+    dispatch(passwordFormActions.openOutputModal());
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  const onChange = (checkedValues) => {
+    console.log("checked = ", checkedValues);
+  };
+
   return (
     <Form
       name="basic"

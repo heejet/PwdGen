@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button, Input, Space } from "antd";
 
-import "./PasswordOutput.css";
 import { CONSTANTS } from "../../utils/constants";
+import { passwordFormActions } from "../../store/password-form-slice";
+
+import "./PasswordOutput.css";
 
 const PasswordOutput = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const isModalOpen = useSelector((state) => state.passwordForm.isOutputModalVisible);
+  const dispatch = useDispatch();
 
   const handleCancel = () => {
-    setIsModalOpen(false);
+    dispatch(passwordFormActions.closeOutputModal());
   };
+
   return (
     <Modal
       title="Generated Password"
