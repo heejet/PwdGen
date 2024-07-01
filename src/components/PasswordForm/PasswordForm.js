@@ -6,19 +6,22 @@ import { CONSTANTS } from "../../utils/constants";
 const passwordFormatOptions = [
   {
     label: "Add Special Character",
-    value: CONSTANTS.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
+    value: CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
   },
-  { label: "Add Numbers", value: CONSTANTS.PASSWORD_FORMATS.ADD_NUMBERS },
+  {
+    label: "Add Numbers",
+    value: CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_NUMBERS,
+  },
 ];
-
 
 /** Initial form values. */
 const initialPasswordFormatValues = [
-  CONSTANTS.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
-  CONSTANTS.PASSWORD_FORMATS.ADD_NUMBERS,
+  CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
+  CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_NUMBERS,
 ];
 
-const initialIterationValue = 1
+const initialIterationValue =
+  CONSTANTS.PASSWORD_FORM.INITIAL_VALUES.INITIAL_ITERATION_VALUE;
 
 /** Form handlers. */
 const onFinish = (values) => {
@@ -39,19 +42,19 @@ const PasswordForm = () => {
       name="basic"
       initialValues={{
         passwordFormat: initialPasswordFormatValues,
-        iteration: initialIterationValue
+        iteration: initialIterationValue,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
-        name="username"
+        label="Domain Name"
+        name="domainName"
         rules={[
           {
             required: true,
-            message: "Please input your username!",
+            message: "Please input the domain name!",
           },
         ]}
       >
