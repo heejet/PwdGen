@@ -7,11 +7,17 @@ import { passwordFormActions } from "../../store/password-form-slice";
 import "./PasswordOutput.css";
 
 const PasswordOutput = () => {
-  const isModalOpen = useSelector((state) => state.passwordForm.isOutputModalVisible);
+  const isModalOpen = useSelector(
+    (state) => state.passwordForm.isOutputModalVisible
+  );
+  const generatedPassword = useSelector(
+    (state) => state.passwordForm.generatedPassword
+  );
   const dispatch = useDispatch();
 
   const handleCancel = () => {
     dispatch(passwordFormActions.closeOutputModal());
+    dispatch(passwordFormActions.updateGeneratedPassword(""));
   };
 
   return (
@@ -27,7 +33,7 @@ const PasswordOutput = () => {
           width: "100%",
         }}
       >
-        <Input value="Combine input and button" />
+        <Input value={generatedPassword} />
         <Button type="primary">Submit</Button>
       </Space.Compact>
     </Modal>

@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input, InputNumber } from "antd";
 
 import { CONSTANTS } from "../../utils/constants";
 import { passwordFormActions } from "../../store/password-form-slice";
+import { generatePassword } from "../../utils/passwordGenerator";
 
 import "./PasswordForm.css";
 
@@ -32,6 +33,7 @@ const PasswordForm = () => {
   /** Form handlers. */
   const onFinish = (values) => {
     console.log("Success:", values);
+    generatePassword(values);
     dispatch(passwordFormActions.openOutputModal());
   };
 
