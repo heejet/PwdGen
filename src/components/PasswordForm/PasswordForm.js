@@ -3,24 +3,30 @@ import { Button, Checkbox, Form, Input, InputNumber } from "antd";
 
 import { CONSTANTS } from "../../utils/constants";
 import { passwordFormActions } from "../../store/password-form-slice";
+import { generatePassword } from "../../utils/passwordGenerator";
 
 import "./PasswordForm.css";
 
 const passwordFormatOptions = [
+  // {
+  //   label: "Add Special Character",
+  //   value: CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
+  // },
+  // {
+  //   label: "Add Numbers",
+  //   value: CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_NUMBERS,
+  // },
   {
-    label: "Add Special Character",
-    value: CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
-  },
-  {
-    label: "Add Numbers",
-    value: CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_NUMBERS,
+    label: "Only Letters",
+    value: CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ONLY_LETTERS,
   },
 ];
 
 /** Initial form values. */
 const initialPasswordFormatValues = [
-  CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
-  CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_NUMBERS,
+  // CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_SPECIAL_CHARACTER,
+  // CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ADD_NUMBERS,
+  CONSTANTS.PASSWORD_FORM.PASSWORD_FORMATS.ONLY_LETTERS,
 ];
 
 const initialIterationValue =
@@ -32,6 +38,7 @@ const PasswordForm = () => {
   /** Form handlers. */
   const onFinish = (values) => {
     console.log("Success:", values);
+    generatePassword(values);
     dispatch(passwordFormActions.openOutputModal());
   };
 

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { isOutputModalVisible: false };
+const initialState = { isOutputModalVisible: false, generatedPassword: "" };
 const passwordFormSlice = createSlice({
   name: "passwordForm",
   initialState,
@@ -10,6 +10,9 @@ const passwordFormSlice = createSlice({
     },
     closeOutputModal(state) {
       state.isOutputModalVisible = false;
+    },
+    updateGeneratedPassword(state, action) {
+      state.generatedPassword = action.payload;
     },
   },
 });
