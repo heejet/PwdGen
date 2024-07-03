@@ -3,6 +3,7 @@ export const CONSTANTS = {
     PASSWORD_FORMATS: {
       ADD_SPECIAL_CHARACTER: "addSpecialCharacter",
       ADD_NUMBERS: "addNumbers",
+      ONLY_LETTERS: "onlyLetters",
     },
     FORM_ITEM_NAMES: {
       DOMAIN_NAMES: "domainNames",
